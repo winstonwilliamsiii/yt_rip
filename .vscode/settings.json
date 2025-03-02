@@ -1,0 +1,8 @@
+{
+<<<<<<< Updated upstream
+    "jira-plugin.workingProject": ""
+=======
+    "jira-plugin.workingProject": "",
+    "DockerRun.DisableDockerrc": true
+>>>>>>> Stashed changes
+}

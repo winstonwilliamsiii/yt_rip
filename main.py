@@ -1,9 +1,19 @@
-print("Welcome to NeuralNine YouTube Downloader and Converter v0.2 Alpha")
-print("Loading...")
+This module provides functionality to download YouTube videos and convert 
+them to MP3.
+"""
 
-import pytube
+import sys
+sys.path.append('/path/to/youtube_downloader_directory')
+
 import youtube_downloader
-import file_converter
+try:
+    import file_converter
+except ImportError:
+    print("Error: file_converter module is not available.")
+    file_converter = None
+
+print("Welcome to Mansa Muz Kingdom of Sound")
+print("Loading...")
 
 print('''
 What do you want?
@@ -13,9 +23,9 @@ What do you want?
 (3) Download YouTube Videos and Convert Into MP3
 
 Downloading copyrighted YouTube videos is illegal!
-I am not responsible for your downloads! Go at your own risk!
+I am not responsible for your downloads! Do What You Da F Want!
 
-Copyright (c) NeuralNine 2020
+Copyright (c) M_Group 2025
 ''')
 
 choice = input("Choice: ")

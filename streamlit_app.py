@@ -21,7 +21,7 @@ st.markdown(
     """ 
     <style>
     .write {
-        color: #FFFFFF;
+        color: #a9dfbf
         font-size: 20px;
         text-align: bottom;
     }

@@ -1,3 +1,10 @@
 {
-    "jira-plugin.workingProject": ""
+    "jira-plugin.workingProject": "",
+    "cSpell.words": [
+        "audiofile",
+        "Chimba",
+        "itag",
+        "pytube",
+        "ytdownloader"
+    ]
 }

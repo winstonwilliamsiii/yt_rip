@@ -1,4 +1,4 @@
-# youtube-downloader-converter
+# YouTube-downloader-converter-Spotify Charts
 
 A simple Python script that is able to download YouTube videos or playlists and convert them into MP3. Additionally, we have added Top 100 Spotify Chart
 

@@ -4,15 +4,60 @@ them to MP3.
 """
 
 import sys
-sys.path.append("C:/ProgramFiles(x86)/YTHelper/YTDownloader")
+""
 
-import ytdownloader
+
+
+import sys
+from yt-dlp import YouTube  # A common YouTube download library
+
+
+# Define the downloader function
+def download_video(url, quality='low'):
+    try:
+        yt = YouTube(url)
+        if quality == 'low':
+            video = yt.streams.get_lowest_resolution()
+        elif quality == 'high':
+            video = yt.streams.get_highest_resolution()
+        else:
+            video = yt.streams.filter(progressive=True, file_extension='mp4').first()
+        
+        return video.download()
+    except Exception as e:
+        print(f"Error downloading video: {e}")
+        return None
+# Removed invalid import statement as "YT Downloader" is not a valid module name
+# Ensure you replace this with the correct module name or path if needed
 try:
     import file_converter
 except ImportError:
     print("Error: file_converter module is not available.")
     file_converter = None
 
+"""
+This module provides functionality to download YouTube videos and convert 
+them to MP3.
+"""
+
+import subprocess
+import sys
+
+YTDOWNLOADER_PATH = r"C:\Program Files (x86)\YT Helper\YT Downloader\YTDownloader.exe"
+
+def download_video(url, quality='low'):
+    try:
+        result = subprocess.run([YTDOWNLOADER_PATH, url, f"--quality={quality}"], 
+                              capture_output=True, 
+                              text=True)
+        if result.returncode == 0:
+            return result.stdout
+        else:
+            print(f"Error: {result.stderr}")
+            return None
+    except Exception as e:
+        print(f"Error executing YTDownloader: {e}")
+        return None
 print("Welcome to Mansa Muz Kingdom of Sound")
 print("Loading...")
 
@@ -29,25 +74,4 @@ I am not responsible for your downloads! Do What You Da F Want!
 Copyright (c) M_Group 2025
 ''')
 
-choice = input("Choice: ")
 
-if choice == "1" or choice == "2":
-    quality = input("Please choose a quality (low, medium, high, very high):")
-    if choice == "2":
-        link = input("Enter the link to the playlist: ")
-        print("Downloading playlist...")
-        ytdownloader.download_playlist(link, quality)
-        print("Download finished!")
-    if choice == "1":
-        links = ytdownloader.input_links()
-        for link in links:
-            ytdownloader.download_video(link, quality)
-elif choice == "3":
-    links = ytdownloader.input_links()
-    for link in links:
-        print("Downloading...")
-        filename = ytdownloader.download_video(link, 'low')
-        print("Converting...")
-        file_converter.convert_to_mp3(filename)
-else:
-    print("Invalid input! Terminating...")

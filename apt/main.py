@@ -4,39 +4,59 @@ them to MP3.
 """
 
 import sys
-""
+import yt_dlp
+import streamlit as st
 
-
-
-import sys
-from yt-dlp import YouTube  # A common YouTube download library
-
-
-# Define the downloader function
 def download_video(url, quality='low'):
     try:
-        yt = YouTube(url)
-        if quality == 'low':
-            video = yt.streams.get_lowest_resolution()
-        elif quality == 'high':
-            video = yt.streams.get_highest_resolution()
-        else:
-            video = yt.streams.filter(progressive=True, file_extension='mp4').first()
-        
-        return video.download()
+        ydl_opts = {
+            'format': 'worst' if quality == 'low' else 'best',
+            'outtmpl': '%(title)s.%(ext)s'
+        }
+        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+            result = ydl.download([url])
+        return result
     except Exception as e:
-        print(f"Error downloading video: {e}")
+        st.error(f"Error downloading video: {e}")
         return None
+
+def main():
+    st.title("Mansa Muz Kingdom of Sound")
+    st.write("Loading...")
+
+    st.write("""
+    What do you want?
+
+    1. Download YouTube Videos Manually
+    2. Download a YouTube Playlist
+    3. Download YouTube Videos and Convert Into MP3
+
+    Downloading copyrighted YouTube videos is illegal!
+    I am not responsible for your downloads! Do What You Da F Want!
+
+    Copyright (c) M_Group 2025
+    """)
+
+    option = st.selectbox(
+        'Choose an option:',
+        ('Download YouTube Videos Manually', 
+         'Download a YouTube Playlist', 
+         'Download YouTube Videos and Convert Into MP3')
+    )
+
+if __name__ == "__main__":
+    main()
+    
 # Removed invalid import statement as "YT Downloader" is not a valid module name
 # Ensure you replace this with the correct module name or path if needed
 try:
-    import file_converter
+    pass  # Add your code here if needed
 except ImportError:
     print("Error: file_converter module is not available.")
     file_converter = None
 
 """
-This module provides functionality to download YouTube videos and convert 
+#This module provides functionality to download YouTube videos and convert 
 them to MP3.
 """
 

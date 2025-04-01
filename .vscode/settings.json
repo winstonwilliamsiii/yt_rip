@@ -21,5 +21,6 @@
             "database": "mgrp_schema",
             "username": "root"
         }
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "basic"
 }

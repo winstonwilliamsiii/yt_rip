@@ -1,0 +1,23 @@
+{
+  "configurations": [
+    {
+      "type": "debugpy",
+      "request": "launch",
+      "name": "Launch Python Program",
+      "program": "${workspaceFolder}/${input:pythonFile}"
+    }
+  ],
+  "inputs": [
+    {
+      "type": "pickString",
+      "id": "pythonFile",
+      "description": "Select the Python file to debug",
+      "options": [
+        "main.py",
+        "file_converter.py",
+        "streamlit_app.py",
+        "streamlit_app2.py"
+      ]
+    }
+  ]
+}

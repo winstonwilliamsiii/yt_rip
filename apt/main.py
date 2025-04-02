@@ -47,8 +47,6 @@ def main():
 if __name__ == "__main__":
     main()
     
-# Removed invalid import statement as "YT Downloader" is not a valid module name
-# Ensure you replace this with the correct module name or path if needed
 try:
     pass  # Add your code here if needed
 except ImportError:
